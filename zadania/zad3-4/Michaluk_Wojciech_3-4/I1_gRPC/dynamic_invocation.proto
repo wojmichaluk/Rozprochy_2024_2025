@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "sr.grpc.gen";
+option java_outer_classname = "DynamicInvocationProto";
+
+package dynamic;
+
+
+// enums
+
+enum Quarter {
+  WINTER = 0;
+  SPRING = 1;
+  SUMMER = 2;
+  FALL = 3;
+}
+
+
+// messages
+
+message Date {
+  int32 year = 1;
+  Quarter quarter = 2;
+}
+
+message QuarterSalaries {
+  Date date = 1;
+  repeated double salaries = 2;
+}
+
+message Empty {}
+
+message SalariesList {
+  repeated double salaries = 1;
+}
+
+// basing on laboratory source
+message Number {
+  int32 num = 1;
+}
+
+// basing on laboratory source
+message Report {
+  int32 count = 1;
+  int64 processorTime = 2;
+}
+
+
+// services
+
+service WorkerSalary {
+  rpc InsertQuarterSalaries (QuarterSalaries) returns (Empty) {}
+  rpc GetQuarterSalaries (Date) returns (SalariesList) {}
+}
+
+// basing on laboratory source
+service PrimeNumbersStream {
+  rpc GeneratePrimeNumbers(Number) returns (stream Number) {}
+  rpc CountPrimeNumbers(stream Number) returns (Report) {}
+}
