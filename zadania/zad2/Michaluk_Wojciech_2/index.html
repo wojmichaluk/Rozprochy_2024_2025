@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REST API task</title>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <h1>Valorant stats and info REST API service</h1>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h2>Get image(s) for a selected rank and episode</h2>
+                <form action="http://localhost:8000/rank-form" method="POST" onsubmit="return validate1()">
+                    <label for="episode">Episode - give number from 1 to 5:</label><br>
+                    <input type="number" id="episode" name="episode" min="1" max="5"><br>
+                    <p>Choose rank to get image(s) about:</p>
+                    <input type="radio" id="unranked" name="rank" value="unranked" checked>
+                    <label for="unranked">Unranked</label><br>
+                    <input type="radio" id="iron" name="rank" value="iron">
+                    <label for="iron">Iron</label><br>
+                    <input type="radio" id="bronze" name="rank" value="bronze">
+                    <label for="bronze">Bronze</label><br>
+                    <input type="radio" id="silver" name="rank" value="silver">
+                    <label for="silver">Silver</label><br>
+                    <input type="radio" id="gold" name="rank" value="gold">
+                    <label for="gold">Gold</label><br>
+                    <input type="radio" id="platinum" name="rank" value="platinum">
+                    <label for="platinum">Platinum</label><br>
+                    <input type="radio" id="diamond" name="rank" value="diamond">
+                    <label for="diamond">Diamond</label><br>
+                    <input type="radio" id="ascendant" name="rank" value="ascendant">
+                    <label for="ascendant">Ascendant <i>(only episode 5)</i></label><br>
+                    <input type="radio" id="immortal" name="rank" value="immortal">
+                    <label for="immortal">Immortal</label><br>
+                    <input type="radio" id="radiant" name="rank" value="radiant">
+                    <label for="radiant">Radiant</label><br><br>
+                    <input type="submit" id="submit" value="Send request">
+                </form>
+            </div>
+            <div class="column">
+                <h2>Get statistics for weapons in a given price range</h2>
+                <form action="http://localhost:8000/weapons-form" method="POST" onsubmit="return validate2()">
+                    <label for="min_cost">Price minimum <i>(>=300)</i>:</label><br>
+                    <input type="number" id="min_cost" value="300" name="min_cost" min="300" max="4700"><br>
+                    <label for="max_cost">Price maximum <i>(&lt=4700)</i>:</label><br>
+                    <input type="number" id="max_cost" value="4700" name="max_cost" min="300" max="4700"><br>
+                    <p>Choose stat to get info about:</p>
+                    <input type="radio" id="firerate" name="stat" value="firerate" checked>
+                    <label for="firerate">Firerate <i>(shots per second)</i></label><br>
+                    <input type="radio" id="magazine" name="stat" value="magazine">
+                    <label for="magazine">Magazine size</label><br>
+                    <input type="radio" id="reload" name="stat" value="reload">
+                    <label for="reload">Reload time <i>(seconds)</i></label><br><br>
+                    <input type="submit" id="submit" value="Send request">
+                </form>
+            </div>
+            <div class="column">
+                <h2>Get info about a specific agent</h2>
+                <form action="http://localhost:8000/agent-form" method="POST" onsubmit="return validate3()">
+                    <label for="name">Agent name <i>(click below to toggle all agents list)</i>:</label><br>
+                    <input type="text" id="name_agent" name="name"><br><br>
+                    <button type="button" id="toggle" onclick="toggleList()">Show all agents list</button><br>
+                    <p id="agents_list" hidden>
+                        Brimstone, Phoenix, Sage, Sova, Viper, Cypher, Reyna, Killjoy, Breach,<br> 
+                        Omen, Jett, Raze, Skye, Yoru, Astra, KAY/O, Chamber, Neon, Fade,<br>
+                        Harbor, Gekko, Deadlock, Iso, Clove, Vyse, Tejo
+                    </p>
+                    <p>Choose what to get info about:</p>
+                    <input type="radio" id="ability" name="option" value="abilities" checked>
+                    <label for="ability">Agent abilities <i>(with icons!)</i></label><br>
+                    <input type="radio" id="contract" name="option" value="contract">
+                    <label for="contract">Agent contract <i>(statistics)</i></label><br><br>
+                    <input type="submit" id="submit" value="Send request">
+                </form>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
